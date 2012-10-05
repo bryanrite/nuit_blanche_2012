@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gst-launch -e v4l2src device=/dev/video0 ! video/x-raw-yuv,width=640,height=480,framerate=30/1 ! aspectratiocrop aspect-ratio=16/9 ! ffmpegcolorspace ! jpegenc ! udpsink host=10.1.65.10 port=5001

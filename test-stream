@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gst-launch -e udpsrc port=5002 ! jpegdec ! ffmpegcolorspace ! edgetv ! dicetv square-bits=1 ! ffmpegcolorspace ! xvimagesink

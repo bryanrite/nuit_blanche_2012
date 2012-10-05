@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gst-launch -e v4l2src device=/dev/video1 ! video/x-raw-yuv,width=800,height=600 ! aspectratiocrop aspect-ratio=16/9 ! ffmpegcolorspace ! videoflip method=horizontal-flip ! edgetv ! dicetv square-bits=1 ! ffmpegcolorspace ! xvimagesink

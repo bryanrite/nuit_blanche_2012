@@ -1,0 +1,6 @@
+#!/bin/sh
+
+gst-launch -e videomixer name=mix ! ffmpegcolorspace ! edgetv ! dicetv square-bits=1 ! ffmpegcolorspace ! videoscale ! xvimagesink sync=false \
+  v4l2src device=/dev/video1 ! video/x-raw-yuv,width=800,height=600 ! aspectratiocrop aspect-ratio=16/9 ! videoflip method=horizontal-flip ! videobox border-alpha=0 alpha=0.5 top=0 left=0 ! mix. \
+  udpsrc port=5002 ! 'image/jpeg,width=800,height=450,framerate=30/1,format=(fourcc)I420,sof-marker=(int)2' ! jpegdec ! video/x-raw-yuv,width=800,height=450,framerate=30/1 ! videobox border-alpha=0 top=0 left=-1 ! mix. \
+
